@@ -113,6 +113,10 @@ describe('temporarily', () => {
       );
     });
 
+    it('should throw on illegal template character', () => {
+      expect(() => filepath({ name: 'test-{abc}' })).toThrow();
+    });
+
   });
 
   afterEach(() => {
