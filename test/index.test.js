@@ -107,6 +107,12 @@ describe('temporarily', () => {
       );
     });
 
+    it('should return filepath with custom extention', () => {
+      expect(filepath({ ext: 'json' })).toMatch(
+        /\.json$/
+      );
+    });
+
   });
 
   afterEach(() => {
