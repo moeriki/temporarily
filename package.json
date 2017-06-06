@@ -1,0 +1,47 @@
+{
+  "name": "temporarily",
+  "version": "0.0.0",
+  "description": "Create temporary directories and files.",
+  "keywords": [
+    "promise",
+    "temporarily",
+    "temporary",
+    "temp",
+    "tmp"
+  ],
+  "author": "Dieter Luypaert <dieterluypaert@icloud.com>",
+  "license": "MIT",
+  "repository": "git@github.com:Moeriki/node-temporarily.git",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "main": "index.js",
+  "module": "lib/index.js",
+  "scripts": {
+    "lint": "eslint --cache *.js lib/ test/",
+    "test": "jest",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "build": "BABEL_ENV=production babel lib/ --out-dir dist/",
+    "preversion": "npm run build && npm run test && git add -A dist/",
+    "precommit": "lint-staged",
+    "prepush": "npm test"
+  },
+  "lint-staged": {
+    "{lib,test}/*.js": "eslint"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.5.1",
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-muriki": "^8.6.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jasmine": "^2.2.0",
+    "eslint-plugin-node": "^5.0.0",
+    "husky": "^0.13.1",
+    "jest": "^20.0.1",
+    "lint-staged": "^3.4.1"
+  }
+}
