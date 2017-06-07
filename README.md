@@ -14,9 +14,6 @@
     <a href="https://david-dm.org/moeriki/temporarily">
       <img src="https://david-dm.org/moeriki/temporarily/status.svg" alt="dependencies Status"></img>
     </a>
-    <a href="https://snyk.io/test/github/moeriki/temporarily">
-      <img src="https://snyk.io/test/github/moeriki/temporarily/badge.svg" alt="Known Vulnerabilities"></img>
-    </a>
   </p>
 </p>
 
