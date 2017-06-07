@@ -5,17 +5,17 @@
     <a href="https://www.npmjs.com/package/temporarily">
       <img src="https://img.shields.io/npm/v/temporarily.svg" alt="npm version">
     </a>
-    <a href="https://travis-ci.org/Moeriki/node-temporarily">
-      <img src="https://travis-ci.org/Moeriki/node-temporarily.svg?branch=master" alt="Build Status"></img>
+    <a href="https://travis-ci.org/Moeriki/temporarily">
+      <img src="https://travis-ci.org/Moeriki/temporarily.svg?branch=master" alt="Build Status"></img>
     </a>
-    <a href="https://coveralls.io/github/Moeriki/node-temporarily?branch=master">
-      <img src="https://coveralls.io/repos/github/Moeriki/node-temporarily/badge.svg?branch=master" alt="Coverage Status"></img>
+    <a href="https://coveralls.io/github/Moeriki/temporarily?branch=master">
+      <img src="https://coveralls.io/repos/github/Moeriki/temporarily/badge.svg?branch=master" alt="Coverage Status"></img>
     </a>
-    <a href="https://david-dm.org/moeriki/node-temporarily">
-      <img src="https://david-dm.org/moeriki/node-temporarily/status.svg" alt="dependencies Status"></img>
+    <a href="https://david-dm.org/moeriki/temporarily">
+      <img src="https://david-dm.org/moeriki/temporarily/status.svg" alt="dependencies Status"></img>
     </a>
-    <a href="https://snyk.io/test/github/moeriki/node-temporarily">
-      <img src="https://snyk.io/test/github/moeriki/node-temporarily/badge.svg" alt="Known Vulnerabilities"></img>
+    <a href="https://snyk.io/test/github/moeriki/temporarily">
+      <img src="https://snyk.io/test/github/moeriki/temporarily/badge.svg" alt="Known Vulnerabilities"></img>
     </a>
   </p>
 </p>
