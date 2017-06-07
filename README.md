@@ -61,7 +61,7 @@ filepath({ ext: 'json' });
 // '/var/folders/30/T/temporarily-tkEK6023.json'
 
 filepath({ dir: os.homedir() });
-// '/Users/myuser/temporarily-tkEK6023'
+// '/home/myuser/temporarily-tkEK6023'
 
 filepath({ name: 'file-{wwdd}' });
 // '/var/folders/30/T/file-tk60'
@@ -108,7 +108,7 @@ dir();
 //   mode: 511 }
 
 dir({ dir: os.homedir() });
-// { filepath: '/var/folders/30/T/temporarily-tkEK6023',
+// { filepath: '/home/myuser/temporarily-tkEK6023',
 //   mode: 511 }
 
 dir({ mode: 0o666 });
