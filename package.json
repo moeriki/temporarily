@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "Create temporary directories and files.",
   "keywords": [
-    "promise",
     "temporarily",
     "temporary",
     "temp",
-    "tmp"
+    "tmp",
+    "file",
+    "files",
+    "dir",
+    "dirs",
+    "directory",
+    "directories",
+    "scaffold",
+    "test",
+    "testing"
   ],
   "author": "Dieter Luypaert <dieterluypaert@icloud.com>",
   "license": "MIT",
