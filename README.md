@@ -47,11 +47,13 @@ import { dir, file, filepath } from 'temporarily';
 
 ### filepath
 
+Generate a filepath. **No file is created.**
+
 `filepath( [options:object] )`
 
-* options.**dir** `string`
-* options.**ext** `string`
-* options.**name** `string`
+* options.**dir** `:string` – default `os.tmpdir()`
+* options.**ext** `:string`
+* options.**name** `:string` – default `temporarily-{wwwwdddd}`
 
 ```js
 filepath();
@@ -69,10 +71,13 @@ filepath({ name: 'file-{wwdd}' });
 
 ### file
 
+Create a temporary file.
+
 `file( [options:object] )`
 
-* options.**data** `string`
-* options.**mode** `string`
+* options.**data** `:string|Buffer` – default `''`
+* options.**encoding** `:string` – default `'utf8'`
+* options.**mode** `:string` – default `0o666`
 
 All options from **filepath** can be applied as well.
 
@@ -95,10 +100,11 @@ file({ data: 'Hello World!' }); // write file contents
 
 ### dir
 
+Create a temporary directory.
+
 `dir( [options:object], [children:Array<object>] )`
 
-* options.**dir** `string`
-* options.**mode** `string`
+* options.**mode** `:string` – default `0o777`
 
 All options from **filepath** can be applied as well.
 
