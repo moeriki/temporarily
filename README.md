@@ -96,7 +96,7 @@ file({ data: 'Hello World!' }); // write file contents
 ### dir
 
 `dir( [options:object], [children:Array<object>] )`
- 
+
 * options.**dir** `string`
 * options.**mode** `string`
 
@@ -123,10 +123,10 @@ dir({ name: 'tempo' }, [
 ])
 // { filepath: '/var/folders/30/T/tempo',
 //   mode: 511,
-//   children: 
+//   children:
 //    [ { filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662',
 //        mode: 511,
-//        children: 
+//        children:
 //         [ { data: '',
 //             filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662/nestedFile',
 //             mode: 438 } ] },
