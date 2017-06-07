@@ -30,12 +30,110 @@ npm install --save temporarily
 
 ## Why
 
-There are a few other temporary file creation utilities.
+There are a [few](https://github.com/vesln/temporary) [other](https://github.com/raszi/node-tmp) [temporary](https://github.com/bruce/node-temp) file creation utilities. Here's why I made my own.
 
-* sync by default, we use it for testing only
-* cleaned up by default
-* immediate nested dir / file scaffold
+* cleanup by default, no opt-out
+* sync by default, meant for testing
+* easy nested dir / file scaffolding with content
 
 ## Usage
 
-`// TODO`
+```js
+const temp = require('temporarily');
+// or
+const { dir, file, filepath } = require('temporarily');
+// or
+import { dir, file, filepath } from 'temporarily';
+```
+
+## API
+
+### filepath
+
+`filepath( [options:object] )`
+
+* options.**dir** `string`
+* options.**ext** `string`
+* options.**name** `string`
+
+```js
+temp.filepath();
+// '/var/folders/30/T/temporarily-tkEK6023'
+
+temp.filepath({ ext: 'json' });
+// '/var/folders/30/T/temporarily-tkEK6023.json'
+
+temp.filepath({ dir: os.homedir() });
+// '/Users/myuser/temporarily-tkEK6023'
+
+temp.filepath({ name: 'file-{wwdd}' });
+// '/var/folders/30/T/file-tk60'
+```
+
+### file
+
+`file( [options:object] )`
+
+* options.**data** `string`
+* options.**mode** `string`
+
+All options from **filepath** can be applied as well.
+
+```js
+temp.file();
+// { data: '',
+//   filepath: '/var/folders/30/T/temporarily-RdgC6481',
+//   mode: 438 }
+
+temp.file({ mode: 0o777 });
+// { data: '',
+//   filepath: '/var/folders/30/T/temporarily-RdgC6481',
+//   mode: 511 }
+
+temp.file({ data: 'Hello World!' }); // write file contents
+// { data: 'Hello World!',
+//   filepath: '/var/folders/30/T/temporarily-RdgC6481',
+//   mode: 438 }
+```
+
+### dir
+
+`dir( [options:object], [children:Array<object>] )`
+ 
+* options.**dir** `string`
+* options.**mode** `string`
+
+All options from **filepath** can be applied as well.
+
+```js
+dir();
+// { filepath: '/var/folders/30/T/temporarily-tkEK6023',
+//   mode: 511 }
+
+dir({ dir: os.homedir() });
+// { filepath: '/var/folders/30/T/temporarily-tkEK6023',
+//   mode: 511 }
+
+dir({ mode: 0o666 });
+// { filepath: '/var/folders/30/T/temporarily-tkEK6023',
+//   mode: 438 }
+
+dir({ name: 'tempo' }, [
+  dir([
+    file({ name: 'nestedFile' }),
+  ]),
+  file({ data: 'Hello World!' }),
+])
+// { filepath: '/var/folders/30/T/tempo',
+//   mode: 511,
+//   children: 
+//    [ { filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662',
+//        mode: 511,
+//        children: 
+//         [ { data: '',
+//             filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662/nestedFile',
+//             mode: 438 } ] },
+//      { data: 'Hello World!',
+//        filepath: '/var/folders/30/T/tempo/temporarily-yxYz6104',
+//        mode: 438 } ] }
+```

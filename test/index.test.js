@@ -8,7 +8,8 @@ const { cleanup, dir, file, filepath } = require('../lib');
 
 // private
 
-const exists = (existsFilePath, check = fs.F_OK) => fs.accessSync(existsFilePath, check);
+const exists = (tempX, check = fs.F_OK) => fs.accessSync(tempX.filepath, check);
+const read = (tempFile) => fs.readFileSync(tempFile.filepath, { encoding: 'utf8' });
 
 // tests
 
@@ -20,8 +21,8 @@ describe('temporarily', () => {
       const tempDir1 = dir();
       const tempDir2 = dir();
       cleanup();
-      expect(() => exists(tempDir1.filepath)).toThrow();
-      expect(() => exists(tempDir2.filepath)).toThrow();
+      expect(() => exists(tempDir1)).toThrow();
+      expect(() => exists(tempDir2)).toThrow();
     });
 
     it('should not cleanup dirs it didnt create', () => {
@@ -29,7 +30,7 @@ describe('temporarily', () => {
       fs.mkdirSync(customDirPath);
       dir({ dir: customDirPath });
       cleanup();
-      exists(customDirPath);
+      exists({ filepath: customDirPath });
       fs.rmdirSync(customDirPath);
     });
 
@@ -37,8 +38,8 @@ describe('temporarily', () => {
       const tempFile1 = file();
       const tempFile2 = file();
       cleanup();
-      expect(() => exists(tempFile1.filepath)).toThrow();
-      expect(() => exists(tempFile2.filepath)).toThrow();
+      expect(() => exists(tempFile1)).toThrow();
+      expect(() => exists(tempFile2)).toThrow();
     });
 
   });
@@ -47,25 +48,33 @@ describe('temporarily', () => {
 
     it('should create dir', () => {
       const tempDir = dir();
-      exists(tempDir.filepath);
+      exists(tempDir);
     });
 
     it('should create dir recursively', () => {
       const tempDir = dir({ name: '1/2/3' });
-      exists(tempDir.filepath);
+      exists(tempDir);
     });
 
     it('should create dir with mode', () => {
       const tempDir = dir({ mode: 0o666 });
-      expect(() => exists(tempDir.filepath, fs.X_OK)).toThrow();
+      expect(() => exists(tempDir, fs.X_OK)).toThrow();
     });
 
-    it('should create files within', () => {
-      const tempDir = dir({ files: [{}, {}] });
-      expect(tempDir.files).toBeInstanceOf(Array);
-      expect(tempDir.files.length).toBe(2);
-      exists(tempDir.files[0].filepath);
-      exists(tempDir.files[1].filepath);
+    it('should create children', () => {
+      const tempDir = dir({ name: 'tempo' }, [
+        dir([
+          file({ name: 'nestedFile' }),
+        ]),
+        file({ data: 'Hello World!' }),
+      ]);
+      expect(tempDir.filepath).toMatch(/\/tempo$/);
+      expect(tempDir.children).toHaveLength(2);
+      expect(tempDir.children[0].children).toHaveLength(1);
+      expect(tempDir.children[0].children[0]).toMatchObject({
+        filepath: expect.stringMatching(/\/nestedFile$/),
+      });
+      expect(read(tempDir.children[1])).toBe('Hello World!');
     });
 
   });
@@ -74,17 +83,17 @@ describe('temporarily', () => {
 
     it('should create file', () => {
       const tempFile = file();
-      exists(tempFile.filepath);
+      exists(tempFile);
     });
 
     it('should create file in nested dir', () => {
       const tempFile = file({ dir: '1/2/3' });
-      exists(tempFile.filepath);
+      exists(tempFile);
     });
 
     it('should create file with data', () => {
       const tempFile = file({ data: 'Hello World!' });
-      expect(fs.readFileSync(tempFile.filepath, { encoding: 'utf8' })).toBe('Hello World!');
+      expect(read(tempFile)).toBe('Hello World!');
     });
 
   });
