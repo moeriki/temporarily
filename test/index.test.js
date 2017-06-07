@@ -1,8 +1,10 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+'use strict';
 
-import { cleanup, dir, file, filepath } from '../lib';
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+
+const { cleanup, dir, file, filepath } = require('../lib');
 
 // private
 
