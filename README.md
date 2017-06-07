@@ -54,16 +54,16 @@ import { dir, file, filepath } from 'temporarily';
 * options.**name** `string`
 
 ```js
-temp.filepath();
+filepath();
 // '/var/folders/30/T/temporarily-tkEK6023'
 
-temp.filepath({ ext: 'json' });
+filepath({ ext: 'json' });
 // '/var/folders/30/T/temporarily-tkEK6023.json'
 
-temp.filepath({ dir: os.homedir() });
+filepath({ dir: os.homedir() });
 // '/Users/myuser/temporarily-tkEK6023'
 
-temp.filepath({ name: 'file-{wwdd}' });
+filepath({ name: 'file-{wwdd}' });
 // '/var/folders/30/T/file-tk60'
 ```
 
@@ -77,17 +77,17 @@ temp.filepath({ name: 'file-{wwdd}' });
 All options from **filepath** can be applied as well.
 
 ```js
-temp.file();
+file();
 // { data: '',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
 //   mode: 438 }
 
-temp.file({ mode: 0o777 });
+file({ mode: 0o777 });
 // { data: '',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
 //   mode: 511 }
 
-temp.file({ data: 'Hello World!' }); // write file contents
+file({ data: 'Hello World!' }); // write file contents
 // { data: 'Hello World!',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
 //   mode: 438 }
