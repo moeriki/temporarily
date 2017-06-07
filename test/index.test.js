@@ -87,7 +87,7 @@ describe('temporarily', () => {
     });
 
     it('should create file in nested dir', () => {
-      const tempFile = file({ dir: '1/2/3' });
+      const tempFile = file({ dir: '4/5/6' });
       exists(tempFile);
     });
 
@@ -128,10 +128,6 @@ describe('temporarily', () => {
       expect(() => filepath({ name: 'test-{abc}' })).toThrow();
     });
 
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
 });
