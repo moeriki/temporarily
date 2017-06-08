@@ -5,6 +5,9 @@
     <a href="https://www.npmjs.com/package/temporarily">
       <img src="https://img.shields.io/npm/v/temporarily.svg" alt="npm version">
     </a>
+    <a href="https://www.npmjs.com/package/temporarily">
+      <img src="https://img.shields.io/node/v/temporarily.svg" alt="npm version">
+    </a>
     <a href="https://travis-ci.org/Moeriki/temporarily">
       <img src="https://travis-ci.org/Moeriki/temporarily.svg?branch=master" alt="Build Status"></img>
     </a>
@@ -29,7 +32,7 @@ npm install --save temporarily
 
 There are a [few](https://github.com/vesln/temporary) [other](https://github.com/raszi/node-tmp) [temporary](https://github.com/bruce/node-temp) file creation utilities. Here's why I made my own.
 
-* cleanup by default, no opt-out
+* cleanup by default (on process exit), no opt-out
 * sync by default, meant for testing
 * easy nested dir / file scaffolding with content
 
