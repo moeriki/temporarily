@@ -25,6 +25,11 @@
   },
   "main": "index.js",
   "module": "lib/index.js",
+  "files": [
+    "build/*.js",
+    "lib/*.js",
+    "*.js"
+  ],
   "scripts": {
     "lint": "eslint --cache *.js lib/ test/",
     "test": "jest",
