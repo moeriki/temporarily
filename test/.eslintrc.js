@@ -1,6 +1,8 @@
 module.exports = {
-  root: true,
   extends: [
-    'muriki/presets/jest',
+    'muriki/test',
   ],
+  rules: {
+    'no-sync': 0,
+  },
 };

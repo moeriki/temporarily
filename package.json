@@ -31,9 +31,8 @@
     "*.js"
   ],
   "scripts": {
-    "lint": "eslint --cache *.js lib/ test/",
-    "test": "jest",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint --cache lib/ test/",
+    "test": "npm run lint && jest --coverage",
     "build": "BABEL_ENV=production babel lib/ --out-dir build/",
     "preversion": "npm run build && npm run test && git add -A dist/",
     "precommit": "lint-staged",
@@ -43,18 +42,15 @@
     "{lib,test}/*.js": "eslint"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-jest": "^20.0.3",
-    "babel-preset-env": "^1.5.1",
-    "coveralls": "^2.13.1",
-    "eslint": "^3.19.0",
-    "eslint-config-muriki": "^8.6.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jasmine": "^2.2.0",
-    "eslint-plugin-node": "^5.0.0",
-    "husky": "^0.13.1",
-    "jest": "^20.0.1",
-    "lint-staged": "^3.4.1"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.11.0",
+    "eslint-plugin-muriki": "^1.0.0",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "lint-staged": "^5.0.0"
   }
 }
