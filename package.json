@@ -19,7 +19,7 @@
   ],
   "author": "Dieter Luypaert <dieterluypaert@icloud.com>",
   "license": "MIT",
-  "repository": "git@github.com:Moeriki/node-temporarily.git",
+  "repository": "git@github.com:moeriki/node-temporarily.git",
   "engines": {
     "node": ">=4.0.0"
   },
