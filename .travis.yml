@@ -10,7 +10,8 @@ script:
   - "npm test"
 
 after_success:
-  - "npm run coveralls"
+  - "npm install coveralls"
+  - "cat ./coverage/lcov.info | coveralls"
 
 notifications:
   email: false
