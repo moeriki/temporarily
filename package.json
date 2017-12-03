@@ -35,7 +35,7 @@
     "lint": "eslint --cache lib/ test/",
     "test": "npm run lint && jest --coverage",
     "build": "BABEL_ENV=production babel lib/ --out-dir build/",
-    "preversion": "npm run build && npm run test && git add -A dist/",
+    "preversion": "npm run build && git add -A build/",
     "precommit": "lint-staged",
     "prepush": "npm test"
   },
