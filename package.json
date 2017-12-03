@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": "git@github.com:moeriki/node-temporarily.git",
   "engines": {
-    "node": ">=4.0.0",
+    "node": ">=4",
     "npm": ">=3"
   },
   "main": "index.js",
