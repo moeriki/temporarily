@@ -89,6 +89,7 @@ describe('temporarily', () => {
     it('should create file in nested dir', () => {
       const tempFile = file({ dir: '4/5/6' });
       exists(tempFile);
+      cleanup();
     });
 
     it('should create file with data', () => {
