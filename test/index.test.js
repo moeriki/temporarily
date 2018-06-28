@@ -9,14 +9,13 @@ const { cleanup, dir, file, filepath } = require('../lib');
 // private
 
 const exists = (tempX, check = fs.F_OK) => fs.accessSync(tempX.filepath, check);
-const read = (tempFile) => fs.readFileSync(tempFile.filepath, { encoding: 'utf8' });
+const read = (tempFile) =>
+  fs.readFileSync(tempFile.filepath, { encoding: 'utf8' });
 
 // tests
 
 describe('temporarily', () => {
-
   describe('cleanup', () => {
-
     it('should cleanup dirs', () => {
       const tempDir1 = dir();
       const tempDir2 = dir();
@@ -41,11 +40,9 @@ describe('temporarily', () => {
       expect(() => exists(tempFile1)).toThrow();
       expect(() => exists(tempFile2)).toThrow();
     });
-
   });
 
   describe('dir', () => {
-
     it('should create dir', () => {
       const tempDir = dir();
       exists(tempDir);
@@ -63,9 +60,7 @@ describe('temporarily', () => {
 
     it('should create children', () => {
       const tempDir = dir({ name: 'tempo' }, [
-        dir([
-          file({ name: 'nestedFile' }),
-        ]),
+        dir([file({ name: 'nestedFile' })]),
         file({ data: 'Hello World!' }),
       ]);
       expect(tempDir.filepath).toMatch(/\/tempo$/);
@@ -76,11 +71,9 @@ describe('temporarily', () => {
       });
       expect(read(tempDir.children[1])).toBe('Hello World!');
     });
-
   });
 
   describe('file', () => {
-
     it('should create file', () => {
       const tempFile = file();
       exists(tempFile);
@@ -96,39 +89,31 @@ describe('temporarily', () => {
       const tempFile = file({ data: 'Hello World!' });
       expect(read(tempFile)).toBe('Hello World!');
     });
-
   });
 
   describe('filepath', () => {
-
     it('should return filepath in OS tempdir with default name', () => {
       expect(filepath()).toMatch(
-        new RegExp(`${os.tmpdir()}${path.sep}temporarily-\\w+\\d+`, 'i')
+        new RegExp(`${os.tmpdir()}${path.sep}temporarily-\\w+\\d+`, 'i'),
       );
     });
 
     it('should return filepath in specified dir with default name', () => {
       expect(filepath({ dir: os.homedir() })).toMatch(
-        new RegExp(`${os.homedir()}${path.sep}temporarily-\\w+\\d+`, 'i')
+        new RegExp(`${os.homedir()}${path.sep}temporarily-\\w+\\d+`, 'i'),
       );
     });
 
     it('should return filepath with custom name', () => {
-      expect(filepath({ name: 'abc-{wdwd}' })).toMatch(
-        /\/abc-\w\d\w\d$/
-      );
+      expect(filepath({ name: 'abc-{wdwd}' })).toMatch(/\/abc-\w\d\w\d$/);
     });
 
     it('should return filepath with custom extention', () => {
-      expect(filepath({ ext: 'json' })).toMatch(
-        /\.json$/
-      );
+      expect(filepath({ ext: 'json' })).toMatch(/\.json$/);
     });
 
     it('should throw on illegal template character', () => {
       expect(() => filepath({ name: 'test-{abc}' })).toThrow();
     });
-
   });
-
 });

@@ -1,8 +1,6 @@
 module.exports = {
-  extends: [
-    'muriki/test',
-  ],
-  rules: {
-    'no-sync': 0,
+  parserOptions: {
+    sourceType: 'common-js',
   },
+  env: { jest: true },
 };

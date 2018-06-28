@@ -39,18 +39,20 @@
     "precommit": "lint-staged",
     "prepush": "npm test"
   },
-  "lint-staged": {
-    "{lib,test}/*.js": "eslint"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.19.1",
-    "eslint-plugin-muriki": "^1.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "lint-staged": "^7.2.0"
+  },
+  "lint-staged": {
+    "{lib,test}/*.js": "eslint"
   }
 }
