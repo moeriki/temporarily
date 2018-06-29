@@ -39,6 +39,9 @@
     "precommit": "lint-staged",
     "prepush": "npm test"
   },
+  "dependencies": {
+    "crypto-random-string": "^1.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
