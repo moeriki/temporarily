@@ -40,6 +40,15 @@ describe('temporarily', () => {
       expect(() => exists(tempFile1)).toThrow();
       expect(() => exists(tempFile2)).toThrow();
     });
+
+    it('should permit early cleanup', () => {
+      const tempDir1 = dir();
+      const tempDir2 = dir();
+      tempDir2.cleanup();
+      cleanup();
+      expect(() => exists(tempDir1)).toThrow();
+      expect(() => exists(tempDir2)).toThrow();
+    });
   });
 
   describe('dir', () => {
@@ -71,6 +80,14 @@ describe('temporarily', () => {
       });
       expect(read(tempDir.children[1])).toBe('Hello World!');
     });
+
+    it('should permit early cleanup', () => {
+      const tempDir1 = dir();
+      const tempDir2 = dir();
+      tempDir2.cleanup();
+      expect(() => exists(tempDir2)).toThrow();
+      expect(() => exists(tempDir1)).not.toThrow();
+    })
   });
 
   describe('file', () => {
@@ -89,6 +106,14 @@ describe('temporarily', () => {
       const tempFile = file({ data: 'Hello World!' });
       expect(read(tempFile)).toBe('Hello World!');
     });
+
+    it('should permit early cleanup', () => {
+      const tempFile1 = file();
+      const tempFile2 = file();
+      tempFile2.cleanup();
+      expect(() => exists(tempFile2)).toThrow();
+      expect(() => exists(tempFile1)).not.toThrow();
+    })
   });
 
   describe('filepath', () => {
