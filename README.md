@@ -32,7 +32,7 @@ npm install --save temporarily
 
 There are a [few](https://github.com/vesln/temporary) [other](https://github.com/raszi/node-tmp) [temporary](https://github.com/bruce/node-temp) file creation utilities. Here's why I made my own.
 
-* cleanup by default (on process exit), no opt-out
+* cleanup by default (on process exit), no opt-out (though you may clean up early if necessary)
 * sync by default, meant for testing
 * easy nested dir / file scaffolding with content
 
@@ -88,17 +88,20 @@ All options from **filepath** can be applied as well.
 file();
 // { data: '',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
-//   mode: 438 }
+//   mode: 438,
+//   cleanup: [Function: cleanup] }
 
 file({ mode: 0o777 });
 // { data: '',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
-//   mode: 511 }
+//   mode: 511,
+//   cleanup: [Function: cleanup] }
 
 file({ data: 'Hello World!' }); // write file contents
 // { data: 'Hello World!',
 //   filepath: '/var/folders/30/T/temporarily-RdgC6481',
-//   mode: 438 }
+//   mode: 438,
+//   cleanup: [Function: cleanup] }
 ```
 
 ### dir
@@ -114,15 +117,18 @@ All options from **filepath** can be applied as well.
 ```js
 dir();
 // { filepath: '/var/folders/30/T/temporarily-tkEK6023',
-//   mode: 511 }
+//   mode: 511,
+//   cleanup: [Function: cleanup] }
 
 dir({ dir: os.homedir() });
 // { filepath: '/home/myuser/temporarily-tkEK6023',
-//   mode: 511 }
+//   mode: 511,
+//   cleanup: [Function: cleanup] }
 
 dir({ mode: 0o666 });
 // { filepath: '/var/folders/30/T/temporarily-tkEK6023',
-//   mode: 438 }
+//   mode: 438,
+//   cleanup: [Function: cleanup] }
 
 dir({ name: 'tempo' }, [
   dir([
@@ -132,14 +138,18 @@ dir({ name: 'tempo' }, [
 ])
 // { filepath: '/var/folders/30/T/tempo',
 //   mode: 511,
+//   cleanup: [Function: cleanup],
 //   children:
 //    [ { filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662',
 //        mode: 511,
+//        cleanup: [Function: cleanup],
 //        children:
 //         [ { data: '',
 //             filepath: '/var/folders/30/T/tempo/temporarily-MwpX5662/nestedFile',
-//             mode: 438 } ] },
+//             mode: 438,
+//             cleanup: [Function: cleanup] } ] },
 //      { data: 'Hello World!',
 //        filepath: '/var/folders/30/T/tempo/temporarily-yxYz6104',
-//        mode: 438 } ] }
+//        mode: 438,
+//        cleanup: [Function: cleanup] } ] }
 ```
