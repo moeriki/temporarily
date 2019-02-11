@@ -34,28 +34,78 @@
   "scripts": {
     "lint": "eslint --cache lib/ test/",
     "test": "npm run lint && jest --coverage",
-    "build": "BABEL_ENV=production babel lib/ --out-dir build/",
-    "preversion": "npm run build && git add -A build/",
-    "precommit": "lint-staged",
-    "prepush": "npm test"
+    "build": "BABEL_ENV=production babel lib/ --out-dir build/"
   },
   "dependencies": {
     "crypto-random-string": "^1.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^21.2.0",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.19.1",
+    "@babel/cli": "~7.2.3",
+    "@babel/core": "~7.2.2",
+    "@babel/preset-env": "~7.3.1",
+    "babel-jest": "^24.1.0",
+    "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "husky": "^0.14.3",
-    "jest": "^21.2.1",
-    "lint-staged": "^7.2.0"
+    "husky": "^1.3.1",
+    "jest": "^24.1.0",
+    "lint-staged": "^8.1.3"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": 4
+          }
+        }
+      ]
+    ],
+    "sourceMaps": "inline"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "overrides": [
+      {
+        "files": "lib/*.js",
+        "parserOptions": {
+          "ecmaVersion": 2018,
+          "sourceType": "module"
+        }
+      },
+      {
+        "files": "test/*.js",
+        "parserOptions": {
+          "sourceType": "common-js"
+        },
+        "env": {
+          "jest": true
+        }
+      }
+    ],
+    "root": true,
+    "rules": {
+      "no-sync": 0
+    }
+  },
+  "husky": {
+    "hooks": {
+      "preversion": "npm run build && git add -A build/",
+      "precommit": "lint-staged",
+      "prepush": "npm test"
+    }
   },
   "lint-staged": {
     "{lib,test}/*.js": "eslint"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
